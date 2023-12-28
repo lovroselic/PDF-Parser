@@ -1,0 +1,19 @@
+/* Custom styles */
+#document {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form input, form select, form textarea {
+    margin-bottom: 10px;
+}
+
+div[id^="page-"] {
+    font-size: 18px; /* Increase font size */
+    padding: 20px;   /* Add more padding for greater margins */
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
