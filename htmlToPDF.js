@@ -11,7 +11,14 @@
         WIDTH: 192,
         LEFT: 10,
         TOP: 10,
-        VERSION: 0.05,
+        VERSION: 0.06,
+        TITLE: "",
+        AUTHOR: "",
+        CREATOR: "",
+        SUBJECT: "",
+        KEYWORDS: "",
+        FOOTER_FONT_SIZE: 8,
+        LINE_Y_OFFSET: 13,
     };
 
     async function renderPageToPDF(doc, page, imgWidth) {
@@ -30,36 +37,32 @@
     }
 
     function pageLine(doc) {
-        const linePosY = doc.internal.pageSize.height - 15;
+        const linePosY = doc.internal.pageSize.height - INI.LINE_Y_OFFSET;
         doc.line(INI.LEFT, linePosY, INI.WIDTH, linePosY, 'S');
     }
 
     async function createPDF() {
-        const filename = $("#fn")[0].value || 'document.pdf';
-        const doc = new window.jspdf.jsPDF('p', 'mm');
+        try {
+            const filename = $("#fn")[0].value || 'document.pdf';
+            const doc = new window.jspdf.jsPDF('p', 'mm');
+            doc.setFont("times", "normal");
+            doc.setFontSize(INI.FOOTER_FONT_SIZE);
+            doc.setProperties({ title: INI.TITLE, subject: INI.SUBJECT, author: INI.AUTHOR, keywords: INI.KEYWORDS, creator: INI.CREATOR });
 
-        doc.setFont("times", "normal");
-        doc.setFontSize(10);
+            const imgWidth = INI.WIDTH;
+            const pages = $('div[id^="page-"]');                            // Select all divs with id starting with "page-"
 
-        doc.setProperties({
-            title: '',
-            subject: '',
-            author: '',
-            keywords: '',
-            creator: ''
-        });
+            for (let i = 0; i < pages.length; i++) {
+                if (i > 0) doc.addPage();
+                await renderPageToPDF(doc, pages[i], imgWidth);
+                pageLine(doc);
+                pageFooter(doc, i + 1, pages.length);
+            }
 
-        const imgWidth = INI.WIDTH;
-        const pages = $('div[id^="page-"]');                            // Select all divs with id starting with "page-"
-
-        for (let i = 0; i < pages.length; i++) {
-            if (i > 0) doc.addPage();
-            await renderPageToPDF(doc, pages[i], imgWidth);
-            pageLine(doc);
-            pageFooter(doc, i + 1, pages.length);
+            doc.save(filename);
+        } catch (error) {
+            console.error("Error creating PDF:", error);
         }
-
-        doc.save(filename);
     }
 
     function htmlToPDF() {
