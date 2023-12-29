@@ -11,8 +11,8 @@ form input, form select, form textarea {
 }
 
 div[id^="page-"] {
-    font-size: 18px; /* Increase font size */
-    padding: 20px;   /* Add more padding for greater margins */
+    font-size: 20px; 
+    padding: 20px;  
     margin-bottom: 20px;
     background-color: white;
     border-radius: 5px;
