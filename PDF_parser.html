@@ -17,34 +17,67 @@
         <input type="text" id="fn" name="fn" value="documentX"><br><br>
     </div>
     <div id="document" class="container my-5">
-        <!-- Page 1 -->
+        <!-- Page 1  HEADER-->
         <div id="page-1" class="my-3">
-            <h2 class="mb-3">Page 1</h2>
-            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut dignissim enim.
-                Proin ut justo eget lacus efficitur tristique. Integer pharetra quis justo pharetra viverra. Etiam
-                molestie lacus sodales elit semper, et mattis sem fermentum. Phasellus ornare a dolor ut vehicula. Donec
-                pretium pellentesque odio, at ultricies velit vehicula a. Duis eu ultricies metus. Etiam sem tellus,
-                tristique a lobortis non, egestas facilisis lacus. Sed a metus sit amet dolor lobortis placerat. Sed
-                sodales molestie mi sit amet hendrerit. Fusce ut felis lectus. Nunc hendrerit metus sed lobortis
-                consectetur. Cras aliquet sapien leo, ut bibendum tellus placerat eu. Suspendisse convallis ac urna id
-                maximus. </p>
+            <h2 class="mb-3">Osnovne informacije</h2>
+            <p class="mb-3">kej texta??</p>
             <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="janez vajkard valvasor"><br><br>
+                <div class="row mb-3">
+                    <label for="sola" class="col-sm-2 col-form-label">Šola:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="sola" name="sola">
+                    </div>
+                </div>
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" value="jsd dd asds"><br><br>
+                <div class="row mb-3">
+                    <label for="solskoleto" class="col-sm-2 col-form-label">Šolsko leto:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="solskoleto" name="solskoleto">
+                    </div>
+                </div>
 
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" value="3"><br><br>
+                <div class="row mb-3">
+                    <label for="ucitelj" class="col-sm-2 col-form-label">Učitelj:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ucitelj" name="ucitelj">
+                    </div>
+                </div>
 
-                <!--<input type="submit" value="Submit">-->
+                <div class="row mb-3">
+                    <label for="razred" class="col-sm-2 col-form-label">Razred:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="razred" name="razred">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="datum" class="col-sm-2 col-form-label">Datum:</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="datum" name="datum">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="ura" class="col-sm-2 col-form-label">Zaporedna ura:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="ura" name="ura" step="1"
+                            oninput="validateInteger(this)">
+                    </div>
+                </div>
             </form>
+
         </div>
 
         <!-- Page 2 -->
         <div id="page-2" class="my-3">
-            <h2 class="mb-3">Page 2</h2>
+            <h2 class="mb-3">1. Uvodna rutina</h2>
+            <h3 class="mb-3">1.1 Socializacija</h3>
+        </div>
+
+        <!-- Page 2 -->
+        <div id="page-2" class="my-3">
+            <h2 class="mb-3">1. Uvodna rutina</h2>
+            <h3 class="mb-3">1.1 Socializacija</h3>
             <p class="mb-3">Suspendisse libero magna, lobortis in semper eget, molestie id risus. Fusce id tincidunt
                 arcu, sed tincidunt mi. Integer ipsum urna, molestie sed porta id, posuere id nulla. Ut vestibulum ipsum
                 a dolor mattis eleifend. Sed et tempor urna, sed rutrum quam. Quisque euismod id risus eget vehicula.
@@ -90,15 +123,28 @@
         <button id="export-pdf-btn" class="btn btn-primary">Export to PDF</button>
     </div>
 
-    <!-- JS -->
+    <!-- jquery, bootstrap -->
     <script src="./External/bootstrap.bundle.min.js"></script>
     <script src="./External/jquery-3.6.0.min.js"></script>
     <!-- jsPDF library -->
     <script type="text/javascript" src="./External/purify.min.js"></script>
     <script type="text/javascript" src="./External/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- Custom script -->
+    <!-- main -->
     <script src="htmlToPDF.js"></script>
+    <script>
+
+        /**
+         * field validations
+        */
+
+        function validateInteger(input) {
+            if (!Number.isInteger(+input.value)) {
+                input.value = Math.trunc(+input.value);
+            }
+        }
+
+    </script>
 </body>
 
 </html>

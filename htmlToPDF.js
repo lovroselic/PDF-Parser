@@ -11,7 +11,7 @@
         WIDTH: 192,
         LEFT: 10,
         TOP: 10,
-        VERSION: 0.06,
+        VERSION: "0.07",
         TITLE: "",
         AUTHOR: "",
         CREATOR: "",
@@ -65,10 +65,77 @@
         }
     }
 
+    function schoolYear() {
+        const date = new Date();
+        let year = date.getFullYear();
+        if (date.getMonth() <= 8) year--;
+        return `${year}/${String(year + 1).slice(2)}`;
+    }
+
+    function today() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        return yyyy + '-' + mm + '-' + dd;
+    }
+
+    function stringToUnderscoredString(string) {
+        return string.replace(/ /g, '_');
+    }
+
+    function add_checklist(checklist) {
+        let element = `<form>`;
+        for (const check of checklist) {
+            const id = stringToUnderscoredString(check);
+            element += `<input type="checkbox" id=${id} name=${id} value="${check}">`;
+            element += `<label for=${id}>&nbsp; ${check}</label><br>`;
+        }
+        element += "</form>";
+        return element;
+    }
+
+    function goal_checkList(goal, checklist) {
+        const left = 6;
+        const id = stringToUnderscoredString(goal);
+        let element = `<div class="row mb-3 id="${id}"><p class="fw-bold">${goal}</p>`;
+        const leftClass = `col-sm-${left}`;
+        const righClass = `col-sm-${12 - left}`;
+        element += `<div class= "${leftClass}">`;
+        element += add_checklist(checklist);
+        element += "</div>";
+        element += `<div class= "${righClass}">`;
+        element += `<textarea class="form-control" style="height: 100%;resize: none;" placeholder="activity ..."></textarea>`;
+        element += "</div>";
+        element += "</div>";
+        return element;
+    }
+
+    function socializacija() {
+        const cilji = ["POZDRAV", "SOCIALNE VEŠČINE", "FOKUS-KONCENTRACIJA", "KOMUNIKACIJA"];
+        const checklist = ["Funkcioniranje v skupini", "Sledenje in upoštevanje navodil", "Sprejemanje (očesni kontakt, dotik)", "Potrpežljivost",
+            "Orientacija v prostoru", "Kontrola lastnega telesa - motorika", "Urjenje koncentracije", "Navajanje na skupinsko delo"];
+
+        for (const goal of cilji) {
+            const element = goal_checkList(goal, checklist);
+            console.log("element", element);
+            $("#page-2").append(element);
+        }
+
+    }
+
     function htmlToPDF() {
         console.clear();
         console.log(`HTML document to PDF V${INI.VERSION} (LS) running.`);
         $('#export-pdf-btn').on('click', createPDF);
+        $("#solskoleto").val(schoolYear());
+        $("#datum").val(today());
+
+        /**
+         * building pages
+         */
+
+        socializacija();
     }
 
     $(htmlToPDF);
