@@ -7,11 +7,12 @@
 /** IIFE */
 (() => {
 
+    /** globals  */
     const INI = {
         WIDTH: 192,
         LEFT: 10,
         TOP: 10,
-        VERSION: "0.07",
+        VERSION: "0.08",
         TITLE: "",
         AUTHOR: "",
         CREATOR: "",
@@ -20,6 +21,11 @@
         FOOTER_FONT_SIZE: 8,
         LINE_Y_OFFSET: 13,
     };
+
+    const __leftClass__ = `col-sm-${6}`;
+    const __righClass__ = `col-sm-${6}`;
+
+    /** functions */
 
     async function renderPageToPDF(doc, page, imgWidth) {
         try {
@@ -96,19 +102,77 @@
     }
 
     function goal_checkList(goal, checklist) {
-        const left = 6;
         const id = stringToUnderscoredString(goal);
         let element = `<div class="row mb-3 id="${id}"><p class="fw-bold">${goal}</p>`;
-        const leftClass = `col-sm-${left}`;
-        const righClass = `col-sm-${12 - left}`;
-        element += `<div class= "${leftClass}">`;
+        element += `<div class= "${__leftClass__}">`;
         element += add_checklist(checklist);
         element += "</div>";
-        element += `<div class= "${righClass}">`;
+        element += `<div class= "${__righClass__}">`;
         element += `<textarea class="form-control" style="height: 100%;resize: none;" placeholder="activity ..."></textarea>`;
         element += "</div>";
         element += "</div>";
         return element;
+    }
+
+    function metric(chapter) {
+        /**  metric html elements*/
+        const pupil_metric = `
+        <div class="row mb-3">
+            <div class= "${__leftClass__}">
+                <p>Ozaveščanje svojega znanja: tri stopenjska metrika</p> 
+                <p>Znam / lahko še izpopolnim / moram še vaditi </p>
+            </div>
+            <div class= "${__righClass__}">
+                <textarea class="form-control" style="height: 100%;resize: none;" placeholder="opis metrike ..."></textarea>
+            </div>
+        </div>
+        `;
+
+        const teacher_metric1 = `
+        <div class="row mb-3">
+            <div class= "${__leftClass__}">
+                <p>Kako podajam navodila?</p> 
+                <p>Kako pripovedujem?</p>
+                <p>Učenci sledijo, prehitro podajanje, premalo korakov pri postopnosti izvajanja.</p>
+            </div>
+            <div class= "${__righClass__}">
+                <textarea class="form-control" style="height: 100%;resize: none;" placeholder="komentar izboljšanja  ..."></textarea>
+            </div>
+        </div>
+        `;
+
+
+        const teacher_metric2 = `
+        <div class="row mb-3">
+            <div class= "${__leftClass__}">
+                <p>Kako podam povratno informacjo učencu?</p> 
+                <p>Ne podam; popravim napako, tako da poudarim pravilnost izvedbe.</p>
+                <p>Povprašam ali je prepričan da je odgovor pravilen, otrok utemelji (pogovor). </p>
+            </div>
+            <div class= "${__righClass__}">
+                <textarea class="form-control" style="height: 100%;resize: none;" placeholder="komentar izboljšanja  ..."></textarea>
+            </div>
+        </div>
+        `;
+
+        /** end */
+
+        let element = "";
+        element += `<h4 class="my-4">${chapter}.1 Učenec</h4>` + pupil_metric;
+        element += `<h4 class="my-4">${chapter}.2 Učitelj</h4>` + teacher_metric1 + teacher_metric2;
+
+        return element;
+    }
+
+    function formativnoSpremljanje(page, chapter) {
+        $(page).append(`<h3 class="my-4">${chapter} Formativno spremljanje</h3>`);
+        $(page).append(metric(chapter));
+    }
+
+    function oblikaDela(page, chapter) {
+        const checklist = ["Individualno delo", "Frontalno", "Delo po skupinah", "Sodelovalno učenje", "Kreativno iskanje rešitev", "Skupinska predstavitev dela", "samostojna predstavitev dela"];
+        $(page).append(`<h3 class="my-4">${chapter} Oblika dela</h3>`);
+        $(page).append(goal_checkList("", checklist));
     }
 
     function socializacija() {
@@ -118,10 +182,41 @@
 
         for (const goal of cilji) {
             const element = goal_checkList(goal, checklist);
-            console.log("element", element);
             $("#page-2").append(element);
         }
+    }
 
+    function jezik() {
+        const cilji = ["POSLUŠANJE", "GOVOR", "BRANJE", "PISANJE"];
+        const checklist = [
+            ["Razumevanje navodil - verbalni odziv", "Razumevanje navodil - neverbalni odziv"],
+            ["Ponavljanje rim, besedišča", "Odgovori na vprašanja, možnost izbire odgovora", "Sodelovanje v pogovoru (skupinsko delo)"],
+            ["Piktogrami", "Ilustracije", "Učenčev doodle"],
+            ["Opis slike (doodla)", "Vstavljanje manjkajočih besed", "Vizualna zgodba", "Vizualne povedi"]
+        ];
+
+        for (const [index, goal] of cilji.entries()) {
+            const element = goal_checkList(goal, checklist[index]);
+            console.log("element", element);
+            $("#page-3").append(element);
+        }
+
+        formativnoSpremljanje("#page-3", "1.3");
+        oblikaDela("#page-3", "1.4");
+    }
+
+
+
+    /** main */
+
+    function build() {
+
+        /**
+        * building pages
+        */
+
+        socializacija();
+        jezik();
     }
 
     function htmlToPDF() {
@@ -130,12 +225,8 @@
         $('#export-pdf-btn').on('click', createPDF);
         $("#solskoleto").val(schoolYear());
         $("#datum").val(today());
+        build();
 
-        /**
-         * building pages
-         */
-
-        socializacija();
     }
 
     $(htmlToPDF);
