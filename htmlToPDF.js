@@ -12,7 +12,7 @@
         WIDTH: 192,
         LEFT: 10,
         TOP: 10,
-        VERSION: "0.08",
+        VERSION: "0.09",
         TITLE: "",
         AUTHOR: "",
         CREATOR: "",
@@ -22,8 +22,8 @@
         LINE_Y_OFFSET: 13,
     };
 
-    const __leftClass__ = `col-sm-${6}`;
-    const __righClass__ = `col-sm-${6}`;
+    const __leftClass__ = `col-sm-6`;
+    const __righClass__ = `col-sm-6`;
 
     /** functions */
 
@@ -56,7 +56,7 @@
             doc.setProperties({ title: INI.TITLE, subject: INI.SUBJECT, author: INI.AUTHOR, keywords: INI.KEYWORDS, creator: INI.CREATOR });
 
             const imgWidth = INI.WIDTH;
-            const pages = $('div[id^="page-"]');                            // Select all divs with id starting with "page-"
+            const pages = $('div[id^="page-"]:visible');
 
             for (let i = 0; i < pages.length; i++) {
                 if (i > 0) doc.addPage();
@@ -101,14 +101,14 @@
         return element;
     }
 
-    function goal_checkList(goal, checklist) {
+    function goal_checkList(goal, checklist, placeholder = "activity") {
         const id = stringToUnderscoredString(goal);
         let element = `<div class="row mb-3 id="${id}"><p class="fw-bold">${goal}</p>`;
         element += `<div class= "${__leftClass__}">`;
         element += add_checklist(checklist);
         element += "</div>";
         element += `<div class= "${__righClass__}">`;
-        element += `<textarea class="form-control" style="height: 100%;resize: none;" placeholder="activity ..."></textarea>`;
+        element += `<textarea class="form-control" style="height: 100%;resize: none;" placeholder="${placeholder} ..."></textarea>`;
         element += "</div>";
         element += "</div>";
         return element;
@@ -197,7 +197,6 @@
 
         for (const [index, goal] of cilji.entries()) {
             const element = goal_checkList(goal, checklist[index]);
-            console.log("element", element);
             $("#page-3").append(element);
         }
 
@@ -205,9 +204,193 @@
         oblikaDela("#page-3", "1.4");
     }
 
+    function ucnoOkolje() {
+        const cilji = [
+            "PRE-STORYTELLING", "TELLING THE STORY", "POST-STORYTELLING", "STORYTELLING - SPOZNAVANJE VSEBINE",
+            "STORYTELLING - JEZIK - POSLUŠANJE", "STORYTELLING - JEZIK - KOMUNIKACIJA", "STORYTELLING - JEZIK - BRANJE",
+        ];
+        const checklist = [
+            ["Neverbalna predstavitev zgodbe/karakterjev/akcije", "Socializacija (uporaba senzorike/motorike/orientacije v prostoru)", "Neverbalni odziv učencev", "Razumevanje dogajanja"],
+            ["Globalno razumevanje ideje zgodbe", "Aktivno sodelovanje pri pripovedovanju (ponavljajoči se dialog/akcija)", "Gap-fill sodelovanje pri pripovedovanju"],
+            ["Neverbalna predstavitev zgodbe/karakterjev/akcije", "Socializacija (uporaba senzorike/motorike/orientacije v prostoru)", "Verbalni odziv učencev", "Razumevanje glavne ideje zgodbe"],
+            ["Globalno: prepoznavanje sporočila na ilustraciji", "Selektivno: prepoznavanje detajlov na sliki", "Funkcionalno: dajanje navodil prek slike"],
+            ["Globalno: razumevanje glavne ideje zgodbe", "Selektivno: prepoznavanje detajlov (v zgodbi)", "Funkcionalno: razumevanje navodil"],
+            ["Gap-fill sodelovanje pri pripovedovanju", "Neverbalno sodelovanje pri pripovedovanju", "Verbalna igra vlog (dialog)", "Neverbalna igra vlog (izmenjava gest/mimike)"],
+            ["Globalno: prepoznavanje sporočila na ilustraciji", "Selektivno: prepoznavanje detajlov na sliki", "Funkcionalno: dajanje navodil prek slike"]
+        ];
+        const placeholders = ["activity", "activity", "activity", "activity",
+            "ideja zgodbe, detajli, navodila",
+            "Besedišče, opis sodelovanja, opis dialoga, aktivnosti",
+            "ideja zgodbe, detajli, navodila",
+        ];
+
+        for (const [index, goal] of cilji.entries()) {
+            const element = goal_checkList(goal, checklist[index], placeholders[index]);
+            $("#page-4").append(element);
+        }
+
+        formativnoSpremljanje("#page-5", "2.1.2");
+        oblikaDela("#page-5", "2.1.3");
+    }
+
+    function dualTextArea(title, checklist, ph1, ph2) {
+        let element = `<div class="row mb-3">`;
+        element += `<p class="fw-bold">${title}:</p>`;
+        element += `<div class= "col-sm-4">`;
+        element += add_checklist(checklist);
+        element += "</div>";
+        element += `<div class= "col-sm-4">`;
+        element += `<textarea class="form-control" style="height: 100%;resize: none;" placeholder="${ph1} ..."></textarea>`;
+        element += "</div>";
+        element += `<div class= "col-sm-4">`;
+        element += `<textarea class="form-control" style="height: 100%;resize: none;" placeholder="${ph2} ..."></textarea>`;
+        element += "</div>";
+        element += "</div>";
+        return element;
+    }
+
+    function dualCheckList(title, checklist, placeholders) {
+        return dualTextArea(title, checklist, placeholders[0], placeholders[1]);
+    }
+
+    function doodling() {
+        const checklist = ["Opening the scene", "The want", "Progress", "Conflict", "Resolution", "Conclusion"];
+        $("#page-6").append(dualTextArea("THE SIX SENTENCES checklist", checklist, "the sentences", "activity, potek dela"));
+        $("#page-6").append(`<h3 class= "my-3">2.2.1 Jezik</h3>`);
+
+        const cilji = ["POSLUŠANJE", "KOMUNIKACIJA", "BRANJE", "PISANJE", "SLOVNICA"];
+        const checklist2 = [
+            ["Globalno: razumevanje glavne ideje zgodbe", "Selektivno: prepoznavanje detajlov (v zgodbi)", "Funkcionalno: razumevanje navodil"],
+            ["Gap-fill sodelovanje pri pripovedovanju", "Neverbalno sodelovanje pri pripovedovanju", "Verbalna igra vlog (dialog)", "Neverbalna igra vlog (izmenjava gest/mimike)"],
+            ["Globalno: prepoznavanje sporočila na ilustraciji", "Selektivno: prepoznavanje detajlov na sliki", "Funkcionalno: dajanje navodil prek slike"],
+            ["Predopismenjevanje: zapis je risba", "Opismenjevanje: prepoznavanje prvega glasu", "Opismenjevanje: zapis besed", "Globalno: oblikovanje strukture zgodbe", "Selektivno: zapis/risba detajlov na sliki", "Funkcionalno: dajanje navodil prek slike"],
+            ["Povezava glasu z zapisom - izgovorjava", "Členi", "Množina", "Besedne vrste", "Razumevanje besedišča", "Iskanje informacij "]
+        ];
+        const placeholders = ["Ideja zgodbe, detajli, navodila", "Besedišče, Opis sodelovanja, opis dialoga, aktivnosti", "Ideja zgodbe, detajli, navodila", "activity", "activity"];
+
+        for (const [index, goal] of cilji.entries()) {
+            const element = goal_checkList(goal, checklist2[index], placeholders[index]);
+            $("#page-6").append(element);
+        }
+
+        formativnoSpremljanje("#page-7", "2.2.2");
+        oblikaDela("#page-7", "2.2.3");
+    }
+
+    function elementarneIgre() {
+        const cilji = ["IGRE - deli scenarija socialne igre", "JEZIK - POSLUŠANJE", "JEZIK - KOMUNIKACIJA", "JEZIK - BRANJE", "JEZIK - PISANJE", "JEZIK - SLOVNICA"];
+        const checklist = [
+            ["UVOD", "JEDRO", "ZAKLJUČEK", "Elementarna igra 1. reda", "Elementarna igra 2. reda", "Učenje besedišča", "Učenje dialoga", "Učenje strukture"],
+            ["Globalno: razumevanje glavne ideje zgodbe", "Selektivno: prepoznavanje detajlov (v zgodbi)", "Funkcionalno: razumevanje navodil"],
+            ["Gap-fill dialog", "Neverbalno sodelovanje pri dialogu", "Dialog", "Neverbalna komunikacija (izmenjava gest/mimike)"],
+            ["Globalno: prepoznavanje sporočila na ilustraciji", "Selektivno: prepoznavanje detajlov na sliki", "Funkcionalno: dajanje navodil prek slike"],
+            ["Predopismenjevanje: zapis je risba", "Opismenjevanje: prepoznavanje prvega glasu", "Opismenjevanje: zapis besed", "Globalno: oblikovanje strukture zgodbe", "Selektivno: zapis/risba detajlov na sliki", "Funkcionalno: branje navodil "],
+            ["Povezava glasu z zapisom - izgovorjava", "Členi", "Množina", "Besedne vrste", "Razumevanje besedišča", "Iskanje informacij "]
+        ];
+        const placeholders = ["activity", "Ideja zgodbe, detajli, navodila", "Besedišče, Opis sodelovanja, opis dialoga, aktivnosti", "Ideja zgodbe, detajli, navodila", "activity", "activity"];
+
+        for (const [index, goal] of cilji.entries()) {
+            const element = goal_checkList(goal, checklist[index], placeholders[index]);
+            $("#page-8").append(element);
+        }
+
+        formativnoSpremljanje("#page-9", "2.3.2");
+        oblikaDela("#page-9", "2.3.3");
+    }
+
+    function uporabaJezika() {
+        const cl1 = [
+            "Predstavitev doodla/risane predloge", "Predstavtev sebe (About Me)", "Predstavitev dneva (About Today)", "Predstavitev vizualne zgodbe",
+            "Predstavitev vizualne zgodbe", "Predstavitev slikovne zgodbe", "Samostojno pripovedovanje", "Gap-fill pripovedovanje", "Upoštevanje strukture (uvod/jedro/zaključek",
+        ];
+        const cl2 = ["Igra vlog (besedilo ima eno izvedbo)", "Dramatizacija (besedilo ima več možnosti izvedbe)"];
+        const checkListDual = [cl1, cl2];
+        const titles = ["PRIPOVEDOVANJE/ POROČANJE", "SOCIALNA IGRA"];
+        const placeholder = ["activity", "UPORABLJENO BESEDIŠČE/STRUKTURE, potek dela"];
+
+        for (const [index, title] of titles.entries()) {
+            const element = dualCheckList(title, checkListDual[index], placeholder)
+            $("#page-10").append(element);
+        }
+
+        const cilji = ["JEZIK - POSLUŠANJE", "JEZIK - KOMUNIKACIJA", "JEZIK - BRANJE", "JEZIK - PISANJE", "JEZIK - SLOVNICA"];
+        const checklist = [
+            ["Globalno: razumevanje glavne ideje", "Selektivno: prepoznavanje detajlov", "Funkcionalno: razumevanje navodil"],
+            ["Gap-fill dialog/pripovedovanje", "Neverbalno sodelovanje pri dialogu/pripovedovanju", "Dialog/pripovedovanje", "Neverbalna komunikacija (uporaba gest/mimike)"],
+            ["Globalno: razumevanje sporočila", "Selektivno: razumevanje detajlov/besed/struktur", "Funkcionalno: branje navodil "],
+            ["Predopismenjevanje: zapis je risba", "Zapis besed", "Zapis povedi", "Zapis besedila", "Globalno: oblikovanje strukture zgodbe", "Funkcionalno: zapis postopka/navodila", "Selektivno: opis posamezne informacije/sporočila"],
+            ["Povezava glasu z zapisom - izgovorjava", "Členi", "Množina", "Besedne vrste", "Razumevanje besedišča", "Iskanje informacij "]
+        ];
+        const placeholders = ["Ideja zgodbe, detajli, navodila", "Besedišče, Opis sodelovanja, opis dialoga, aktivnosti", "Ideja zgodbe, detajli, navodila", "activity", "activity"];
+
+        for (const [index, goal] of cilji.entries()) {
+            const element = goal_checkList(goal, checklist[index], placeholders[index]);
+            $("#page-10").append(element);
+        }
+
+        formativnoSpremljanje("#page-11", "2.4.2");
+        oblikaDela("#page-11", "2.4.3");
+    }
+
+    function titledLabels(title, label, placeholder) {
+        const element = `<div class="row mb-3">
+            <h3>${title}</h3>
+            <div class="${__leftClass__}">
+                <p>${label}</p>
+            </div>
+            <div class="${__righClass__}">
+                <textarea class="form-control" style="height: 100%;resize: none;" placeholder="${placeholder}  ..."></textarea>
+            </div>
+        </div>`;
+        return element;
+    }
+
+    function zakljucnaRutina() {
+        const titles = ["3.1 PREGLED dela", "3.2. ZADOVOLJSTVO", "3.3 ZAKLJUČEK URE"];
+        const labels = [
+            "Učenci ugotavljajo, ali so dosegli zastavljen cilj? So opravili vse, kar je bilo planirano za to uro? Da/Ne – posledica, kaj izboljšati, kako se lotiti dela naslednjič? Morda je učitelj zastavil prevelik zalogaj?",
+            "Mnenja otrok",
+            "Kratka rutina umirjanja in slovesa"
+        ];
+        const placeholders = ["metrika podajanja, komentar izboljšanja", "metrika vrednotenja", "opis aktivnosti"];
+
+        for (const [index, title] of titles.entries()) {
+            const element = titledLabels(title, labels[index], placeholders[index]);
+            $("#page-12").append(element);
+        }
+
+    }
 
 
     /** main */
+
+    function setup() {
+
+        for (let p = 4; p <= 11; p++) {
+            $(`#page-${p}`).hide();
+        }
+
+        $("#toggleSection1").click(function () {
+            $("#page-4").toggle(400);
+            $("#page-5").toggle(400);
+        });
+
+        $("#toggleSection2").click(function () {
+            $("#page-6").toggle(400);
+            $("#page-7").toggle(400);
+        });
+
+        $("#toggleSection3").click(function () {
+            $("#page-8").toggle(400);
+            $("#page-9").toggle(400);
+        });
+
+        $("#toggleSection4").click(function () {
+            $("#page-10").toggle(400);
+            $("#page-11").toggle(400);
+        });
+
+    }
 
     function build() {
 
@@ -217,12 +400,18 @@
 
         socializacija();
         jezik();
+        ucnoOkolje();
+        doodling();
+        elementarneIgre();
+        uporabaJezika();
+        zakljucnaRutina();
     }
 
     function htmlToPDF() {
         console.clear();
         console.log(`HTML document to PDF V${INI.VERSION} (LS) running.`);
         $('#export-pdf-btn').on('click', createPDF);
+        setup();
         $("#solskoleto").val(schoolYear());
         $("#datum").val(today());
         build();
