@@ -4,6 +4,7 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 form input, form select, form textarea {
@@ -11,7 +12,7 @@ form input, form select, form textarea {
 }
 
 div[id^="page-"] {
-    font-size: 20px;
+    font-size: 18px;
     padding: 20px;
     margin-bottom: 20px;
     background-color: white;
