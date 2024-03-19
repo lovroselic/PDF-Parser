@@ -12,7 +12,7 @@
         WIDTH: 192,
         LEFT: 10,
         TOP: 10,
-        VERSION: "0.10",
+        VERSION: "0.10.1",
         TITLE: "",
         AUTHOR: "",
         CREATOR: "",
