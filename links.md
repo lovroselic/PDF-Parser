@@ -1,4 +1,5 @@
 https://www.codexworld.com/convert-html-to-pdf-using-javascript-jspdf/
+https://artskydj.github.io/jsPDF/docs/jsPDF.html
 http://raw.githack.com/MrRio/jsPDF/master/docs/index.html
 https://github.com/parallax/jsPDF
 https://stackoverflow.com/questions/52170355/jspdf-print-current-pagenumber-in-footer-of-all-pages

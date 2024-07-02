@@ -12,7 +12,7 @@ form input, form select, form textarea {
 }
 
 div[id^="page-"] {
-    font-size: 18px;
+    font-size: 16px;
     padding: 20px;
     margin-bottom: 20px;
     background-color: white;
@@ -20,5 +20,9 @@ div[id^="page-"] {
 }
 
 div[id^="page-"] label {
-    font-size: 15px;
+    font-size: 14px;
+}
+
+.oblika {
+    font-size: 10px;
 }
