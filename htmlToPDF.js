@@ -12,7 +12,7 @@
         WIDTH: 192,
         LEFT: 10,
         TOP: 10,
-        VERSION: "0.10.1",
+        VERSION: "0.11.0",
         TITLE: "",
         AUTHOR: "",
         CREATOR: "",
@@ -165,7 +165,7 @@
     }
 
     function formativnoSpremljanje(page, chapter) {
-        $(page).append(`<h3 class="my-4">${chapter} Formativno spremljanje</h3>`);
+        $(page).append(`<h2 class="mb-3">${chapter}. Formativno spremljanje</h3>`);
         $(page).append(metric(chapter));
     }
 
@@ -200,7 +200,7 @@
             $("#page-3").append(element);
         }
 
-        formativnoSpremljanje("#page-3", "1.3");
+        //formativnoSpremljanje("#page-3", "1.3");
         oblikaDela("#page-3", "1.4");
     }
 
@@ -229,7 +229,7 @@
             $("#page-4").append(element);
         }
 
-        formativnoSpremljanje("#page-5", "2.1.2");
+        //formativnoSpremljanje("#page-5", "2.1.2");
         oblikaDela("#page-5", "2.1.3");
     }
 
@@ -273,7 +273,7 @@
             $("#page-6").append(element);
         }
 
-        formativnoSpremljanje("#page-7", "2.2.2");
+        //formativnoSpremljanje("#page-7", "2.2.2");
         oblikaDela("#page-7", "2.2.3");
     }
 
@@ -294,7 +294,7 @@
             $("#page-8").append(element);
         }
 
-        formativnoSpremljanje("#page-9", "2.3.2");
+        //formativnoSpremljanje("#page-9", "2.3.2");
         oblikaDela("#page-9", "2.3.3");
     }
 
@@ -405,6 +405,7 @@
         elementarneIgre();
         uporabaJezika();
         zakljucnaRutina();
+        formativnoSpremljanje("#page-13", 4);
     }
 
     function htmlToPDF() {
