@@ -12,7 +12,7 @@
         WIDTH: 192,
         LEFT: 10,
         TOP: 10,
-        VERSION: "1.00",
+        VERSION: "1.01",
         TITLE: "",
         AUTHOR: "ChestBook",
         CREATOR: "ChestBook",
@@ -25,8 +25,8 @@
         LOGO_UP: 13,
     };
 
-    const __leftClass__ = `col-sm-6`;
-    const __righClass__ = `col-sm-6`;
+    const __leftClass__ = `col-6`;
+    const __righClass__ = `col-6`;
 
     /** functions */
 
@@ -56,7 +56,7 @@
         const logoPosX = doc.internal.pageSize.width - INI.LOGO_LEFT;
         doc.addImage(logo, 'PNG', logoPosX, logoPosY, 35, 9, '', 'FAST');
     }
-
+    
     async function createPDF() {
         try {
             const filename = $("#fn")[0].value || 'document.pdf';
@@ -252,13 +252,13 @@
     function dualTextArea(title, checklist, ph1, ph2) {
         let element = `<div class="row mb-3">`;
         element += `<p class="fw-bold">${title}:</p>`;
-        element += `<div class= "col-sm-4">`;
+        element += `<div class= "col-4">`;
         element += add_checklist(checklist);
         element += "</div>";
-        element += `<div class= "col-sm-4">`;
+        element += `<div class= "col-4">`;
         element += `<textarea class="form-control" style="height: 100%;resize: none;" placeholder="${ph1} ..."></textarea>`;
         element += "</div>";
-        element += `<div class= "col-sm-4">`;
+        element += `<div class= "col-4">`;
         element += `<textarea class="form-control" style="height: 100%;resize: none;" placeholder="${ph2} ..."></textarea>`;
         element += "</div>";
         element += "</div>";

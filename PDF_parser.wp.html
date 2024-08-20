@@ -30,162 +30,176 @@ https://chestbook.si/priprave/
 
 
 <!-- HTML CONTENT -->
-
-<image id="logo" src="https://chestbook.si/wp-content/uploads/Games/Assets/Images/csb_icon2.png" style="display:none"></image>
-<!--<image id="logo" src="/Images/csb_icon2.png" style="display:none"></image>-->
-
-<div class="container my-5">
-    <label for="fn">FileName:</label>
-    <input type="text" id="fn" name="fn" value="documentX"><br><br>
-</div>
-<div id="document" class="container my-5">
-    <!-- Page 1  HEADER-->
-    <div id="page-1" class="my-3">
-        <h2 class="mb-3">Osnovne informacije</h2>
-        <form>
-            <div class="row mb-3">
-                <label for="sola" class="col-sm-2 col-form-label">Šola:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="sola" name="sola">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="solskoleto" class="col-sm-2 col-form-label">Šolsko leto:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="solskoleto" name="solskoleto">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="ucitelj" class="col-sm-2 col-form-label">Učitelj:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ucitelj" name="ucitelj">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="razred" class="col-sm-2 col-form-label">Razred:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="razred" name="razred">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="datum" class="col-sm-2 col-form-label">Datum:</label>
-                <div class="col-sm-10">
-                    <input type="date" class="form-control" id="datum" name="datum">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="ura" class="col-sm-2 col-form-label">Zaporedna ura:</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" id="ura" name="ura" step="1"
-                        oninput="validateInteger(this)">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="tema" class="col-sm-2 col-form-label">Učna tema:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tema" name="tema">
-                </div>
-            </div>
-        </form>
-
-        <div class="row mb-3 " id="front_page"> </div>
-
-
-
+    <!--<image id="logo" src="/Images/csb_icon2.png" style="display:none"></image>-->
+    <image id="logo" src="https://chestbook.si/wp-content/uploads/Games/Assets/Images/csb_icon2.png" style="display:none"></image>
+    <div class="container my-5">
+        <label for="fn">FileName:</label>
+        <input type="text" id="fn" name="fn" value="documentX"><br><br>
+        <p>Aplikacija potrebuje zadostno širino zaslona za pravilen prikaz obrazca in predvsem za pravilno generiranje
+            PDF dokumenta.</p>
     </div>
+    <div id="document" class="custom-container my-5">
 
-    <!-- Page 2 -->
-    <div id="page-2" class="my-3">
-        <h2 class="mb-3">1. Uvodna rutina</h2>
-        <h3 class="mb-3">1.1 Socializacija</h3>
-    </div>
+        <!-- Page 1  HEADER-->
+        <div id="page-1" class="my-3">
+            <h2 class="mb-3">Osnovne informacije</h2>
+            <form>
+                <div class="row mb-3">
+                    <label for="sola" class="col-2 col-form-label">Šola:</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="sola" name="sola">
+                    </div>
+                </div>
 
-    <!-- Page 3 -->
-    <div id="page-3" class="my-3">
-        <h3 class="mb-3">1.2 Jezik</h3>
-    </div>
+                <div class="row mb-3">
+                    <label for="solskoleto" class="col-2 col-form-label">Šolsko leto:</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="solskoleto" name="solskoleto">
+                    </div>
+                </div>
 
-    <h2 class="mb-3">2. Jedro ure</h2>
-    <p>Izberi ustrezne</p>
+                <div class="row mb-3">
+                    <label for="ucitelj" class="col-2 col-form-label">Učitelj:</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="ucitelj" name="ucitelj">
+                    </div>
+                </div>
 
-    <!-- Page 4 -->
-    <div id="section1">
-        <input type='button' id='toggleSection1' value='Vzpostavitev učnega okolja - pokaži/skrij'
-            class="btn btn-secondary my-3">
-        <div id="page-4" class="my-3">
-            <h2 class="mb-3">2. Jedro ure - učna snov - vzpostavitev učnega okolja</h2>
-            <p>Uporaba socializacije: funkcioniranje v skupini, sledenje/upoštevanje navodil, skupinske aktivnosti,
-                orientacija v prostoru.
-                Etika komunikacije: sprejemanje (očesni kontakt, dotik), potrpežljivost, kontrola lastnega telesa,
-                vloga poslušalca,/publike.
-                Predstavitev vsebine, v katerem bo potekalo učenje.</p>
+                <div class="row mb-3">
+                    <label for="razred" class="col-2 col-form-label">Razred:</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="razred" name="razred">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="datum" class="col-2 col-form-label">Datum:</label>
+                    <div class="col-10">
+                        <input type="date" class="form-control" id="datum" name="datum">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="ura" class="col-2 col-form-label">Zaporedna ura:</label>
+                    <div class="col-10">
+                        <input type="number" class="form-control" id="ura" name="ura" step="1"
+                            oninput="validateInteger(this)">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="tema" class="col-2 col-form-label">Učna tema:</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="tema" name="tema">
+                    </div>
+                </div>
+            </form>
+
+            <div class="row mb-3 " id="front_page"> </div>
+
+
+
         </div>
-        <!--<div id="page-5" class="my-3"> </div>-->
-    </div>
 
-    <!-- Page 5 -->
-    <div id="section2">
-        <input type='button' id='toggleSection2' value='Doodling - pokaži/skrij' class="btn btn-secondary my-3">
-        <div id="page-5" class="my-3">
-            <h2 class="mb-3">2. Jedro ure - učna snov - doodling</h2>
-            <p>Uporaba socializacije: funkcioniranje v skupini, sledenje/upoštevanje navodil, skupinske aktivnosti,
-                orientacija na papirju, fina motorika.
-                Spoznavanje vsebine, v katerem bo potekalo učenje.
-                Začetek opismenjevanja (odvisno od starosti otrok in njihovega predznanja)</p>
+        <!-- Page 2 -->
+        <div id="page-2" class="my-3">
+            <h2 class="mb-3">1. Uvodna rutina</h2>
+            <h3 class="mb-3">1.1 Socializacija</h3>
         </div>
-    </div>
 
-    <!-- Page 6 -->
-    <div id="section3">
-        <input type='button' id='toggleSection3' value='Elementarne igre - pokaži/skrij' class="btn btn-secondary my-3">
-        <div id="page-6" class="my-3">
-            <h2 class="mb-3">2. Jedro ure - učna snov - elementarne igre</h2>
-            <p>Uporaba socializacije: funkcioniranje v skupini, sledenje/upoštevanje navodil, orientacija v
-                prostoru, potrpežljivost, kontrola lastnega telesa, motorika, senzorika
-                Etika komunikacije: spoštovanje sogovornika, vloge v komunikaciji.
-                Pomnjenje besedišča, slovnice v kontekstu vsebine</p>
+        <!-- Page 3 -->
+        <div id="page-3" class="my-3">
+            <h3 class="mb-3">1.2 Jezik</h3>
         </div>
-    </div>
 
-    <!-- Page 7 -->
-    <div id="section4">
-        <input type='button' id='toggleSection4' value='Uporaba jezika - pokaži/skrij' class="btn btn-secondary my-3">
-        <div id="page-7" class="my-3">
-            <h2 class="mb-3">2. Jedro ure</h2>
-            <p>Uporaba socializacije: funkcioniranje v skupini, sledenje/upoštevanje navodil, orientacija v
-                prostoru, potrpežljivost, vzpostavljanje kočesnega kontakta s publiko, kontrola lastnega telesa.
-                Etika komunikacije: spoštovanje sogovornika, vloge v komunikaciji.
-                Uporaba besedišča, slovnice v kontekstu vsebine z namenom podajanja sporočila</p>
+        <h2 class="mb-3">2. Jedro ure</h2>
+        <p>Izberi ustrezne</p>
+
+        <!-- Page 4 -->
+        <div id="section1">
+            <input type='button' id='toggleSection1' value='Vzpostavitev učnega okolja - pokaži/skrij'
+                class="btn btn-secondary my-3">
+            <div id="page-4" class="my-3">
+                <h2 class="mb-3">2. Jedro ure - učna snov - vzpostavitev učnega okolja</h2>
+                <p>Uporaba socializacije: funkcioniranje v skupini, sledenje/upoštevanje navodil, skupinske aktivnosti,
+                    orientacija v prostoru.
+                    Etika komunikacije: sprejemanje (očesni kontakt, dotik), potrpežljivost, kontrola lastnega telesa,
+                    vloga poslušalca,/publike.
+                    Predstavitev vsebine, v katerem bo potekalo učenje.</p>
+            </div>
+            <!--<div id="page-5" class="my-3"> </div>-->
         </div>
+
+        <!-- Page 5 -->
+        <div id="section2">
+            <input type='button' id='toggleSection2' value='Doodling - pokaži/skrij' class="btn btn-secondary my-3">
+            <div id="page-5" class="my-3">
+                <h2 class="mb-3">2. Jedro ure - učna snov - doodling</h2>
+                <p>Uporaba socializacije: funkcioniranje v skupini, sledenje/upoštevanje navodil, skupinske aktivnosti,
+                    orientacija na papirju, fina motorika.
+                    Spoznavanje vsebine, v katerem bo potekalo učenje.
+                    Začetek opismenjevanja (odvisno od starosti otrok in njihovega predznanja)</p>
+            </div>
+        </div>
+
+        <!-- Page 6 -->
+        <div id="section3">
+            <input type='button' id='toggleSection3' value='Elementarne igre - pokaži/skrij'
+                class="btn btn-secondary my-3">
+            <div id="page-6" class="my-3">
+                <h2 class="mb-3">2. Jedro ure - učna snov - elementarne igre</h2>
+                <p>Uporaba socializacije: funkcioniranje v skupini, sledenje/upoštevanje navodil, orientacija v
+                    prostoru, potrpežljivost, kontrola lastnega telesa, motorika, senzorika
+                    Etika komunikacije: spoštovanje sogovornika, vloge v komunikaciji.
+                    Pomnjenje besedišča, slovnice v kontekstu vsebine</p>
+            </div>
+        </div>
+
+        <!-- Page 7 -->
+        <div id="section4">
+            <input type='button' id='toggleSection4' value='Uporaba jezika - pokaži/skrij'
+                class="btn btn-secondary my-3">
+            <div id="page-7" class="my-3">
+                <h2 class="mb-3">2. Jedro ure</h2>
+                <p>Uporaba socializacije: funkcioniranje v skupini, sledenje/upoštevanje navodil, orientacija v
+                    prostoru, potrpežljivost, vzpostavljanje kočesnega kontakta s publiko, kontrola lastnega telesa.
+                    Etika komunikacije: spoštovanje sogovornika, vloge v komunikaciji.
+                    Uporaba besedišča, slovnice v kontekstu vsebine z namenom podajanja sporočila</p>
+            </div>
+        </div>
+
+        <!-- Page 99 -->
+        <div id="page-99" class="my-3">
+            <h2 class="mb-3">3. Zaključna rutina</h2>
+        </div>
+
+    </div>
+    <div id="footer" class="container my-5">
+        <!-- Button to export to PDF -->
+        <button id="export-pdf-btn" class="btn btn-primary">Export to PDF</button>
     </div>
 
-    <!-- Page 99 -->
-    <div id="page-99" class="my-3">
-        <h2 class="mb-3">3. Zaključna rutina</h2>
-    </div>
+    <script>
 
-</div>
-<div id="footer" class="container my-5">
-    <!-- Button to export to PDF -->
-    <button id="export-pdf-btn" class="btn btn-primary">Export to PDF</button>
-</div>
+        /**
+         * field validations
+        */
 
-<script>
+        function validateInteger(input) {
+            const numericValue = +input.value;
 
-    /**
-     * field validations
-    */
+            if (isNaN(numericValue) || numericValue === 0) {
+                alert("Vnesi številko večjo od 0.");
+                input.value = "";
+                return;
+            }
 
-    function validateInteger(input) {
-        if (!Number.isInteger(+input.value)) {
-            input.value = Math.trunc(+input.value);
+            if (!Number.isInteger(numericValue)) {
+                input.value = Math.trunc(numericValue);
+            }
         }
-    }
 
-</script>
+
+    </script>
+
+    <!-- END of HTML CONTENT-->
